@@ -26,13 +26,6 @@ app.get('/run', function(req, res) {
 });
 
 
-  fs.watch('./tmp', {encoding: 'buffer'}, (event, filename) => {
-  if (filename)
-    console.log(filename);
-    // Prints: <Buffer ...>
-  });
-
-
 
 app.get('/image', function(req,res){
 	fs.realpath(__dirname +"/images", function(err, path) {
