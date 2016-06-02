@@ -26,9 +26,11 @@ app.get('/run', function(req, res) {
 });
 
 
-app.get('/info', function(req,res){
-  res.json({work:"lol"})
-});
+  fs.watch('./tmp', {encoding: 'buffer'}, (event, filename) => {
+  if (filename)
+    console.log(filename);
+    // Prints: <Buffer ...>
+  });
 
 
 
