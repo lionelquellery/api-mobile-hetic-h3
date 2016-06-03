@@ -10,6 +10,9 @@ var morgan = require('morgan')
 app.use(bodyParser.urlencoded({ extend: true}));
 app.use(bodyParser.json());
 app.use(morgan('combined'))
+app.use(express.static(__dirname + '/images'));
+app.use(express.static(__dirname,'/public'));
+
 
 
 var port = process.env.PORT || 1337;
@@ -22,6 +25,11 @@ app.use(function(req, res, next) {
 
 app.get('/run', function(req, res) {
 	res.json({message: "API server Run!"});
+
+});
+
+
+app.get('/info', function(req,res){
 
 });
 
@@ -41,69 +49,19 @@ fs.readdir(__dirname +"/images", function(err, files) {
 
 
 
-// ----------------------------------------
 
-// files.forEach(function(f) {
-//         console.log('fichiers: ' + f);
-
-//         fs.realpath(__dirname +"/images", function(err, path) {
-//     if (err) {
-//         console.log(err);
-//      return;
-//     }
-//     // console.log('Path is : ' + path);
-//       res.json({url: path + "/" +f});
-//     });
-          
-
-//     });
-
-
-// function async(arg, callback) {
-//   console.log('document qui provient de cousin \''+arg+'\', Done');
-//   res.send({arg});
-//   setTimeout(function() { callback(arg * 2); }, 1000);
-// }
-
-// function final() { console.log('Done', results); }
 
 var results = {};
 
-// files.forEach(function(item) {
-//   async(item, function(result){
-//     results.push(result);
-//     if(results.length == files.length) {
-//       final();
-//     }
-//   })
-// });
 
-files.forEach(function(file, index){
-    results['image-' + index] = fs.realpathSync('images/' + file);
-});
+  files.forEach(function(file, index){
+      results['image-' + index] = fs.realpathSync('images/' + file);
+  });
 
-res.json(results);
+  res.json(results);
 
 
-
-
-
-
-
-
-
-// -----------------------------------
-
-  // for(i in files){
-  //   f = JSON.stringify(files[i]);
-  //   res.json({f});
-
-  //   console.log(f);
-
-  // }
-
-
-});
+  });
 
 })
 
