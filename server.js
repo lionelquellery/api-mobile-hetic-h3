@@ -55,7 +55,7 @@ var results = {};
 
 
   files.forEach(function(file, index){
-      results['image-' + index] = fs.realpathSync('images/' + file);
+      results['image-' + index] = 'images/' + file;
   });
 
   res.json(results);
