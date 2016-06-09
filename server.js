@@ -50,12 +50,12 @@ app.get('/info', function(req,res){
 
 });
 
-app.post('/api/photo',function(req,res){
+app.post('/upload',function(req,res){
   upload(req,res,function(err) {
     if(err) {
-      return res.end("Error uploading file.");
+      return res.end("Erreur chargement .");
     }
-    res.end("File is uploaded");
+    res.end("Fichier disponible sur le serveur");
   });
 });
 
@@ -76,11 +76,11 @@ fs.readdir(__dirname +"/images", function(err, files) {
 
 
 
-var results = {};
+var results = [];
 
 
   files.forEach(function(file, index){
-      results['image-' + index] = 'images/' + file;
+      results[index] = 'images/' + file;
   });
 
   res.json(results);
