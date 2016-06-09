@@ -37,12 +37,6 @@ app.use(function(req, res, next) {
   next();
 })
 
-app.post('/run', function(req, res) {
-  // res.json({message: "API server Run!"});
-  console.log(req.body)
-  console.log(req.files)
-
-});
 
 
 app.get('/info', function(req,res){
@@ -76,20 +70,34 @@ fs.readdir(__dirname +"/images", function(err, files) {
 
 
 
-var results = [];
+var response = {
+  results: []
+};
 
 
   files.forEach(function(file, index){
-      results[index] = 'images/' + file;
+      response.results.push('images/' + file);
+
   });
 
-  res.json(results);
+  res.json(response);
+
+
+
+
+
+
 
 
   });
 
 })
 
+app.get('/run', function(req, res) {
+  // res.json({message: "API server Run!"});
+
+
+});
 
 
 
