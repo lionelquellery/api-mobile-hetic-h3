@@ -66,10 +66,6 @@ app.get('/image', function(req,res){
 fs.readdir(__dirname +"/images", function(err, files) {
     if (err) return;
 
-
-
-
-
 var response = {
   results: []
 };
@@ -95,7 +91,6 @@ var response = {
 
 app.get('/run', function(req, res) {
   // res.json({message: "API server Run!"});
-
 
 });
 
